@@ -10,7 +10,6 @@ import {
   Lock,
   ShieldCheck,
   UserCog,
-  Smartphone,
   Fingerprint,
   Moon,
   CreditCard,
