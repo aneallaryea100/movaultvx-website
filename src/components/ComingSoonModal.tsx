@@ -1,11 +1,13 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { X, Vault, Smartphone, Bell } from 'lucide-react'
+import { X, Smartphone, Bell } from 'lucide-react'
+import LogoIcon from './LogoIcon'
 
 type ModalContextType = { openModal: () => void }
 
 const ModalContext = createContext<ModalContextType>({ openModal: () => {} })
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAppModal() {
   return useContext(ModalContext)
 }
@@ -27,59 +29,67 @@ export function AppModalProvider({ children }: { children: ReactNode }) {
       {children}
       {open && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         >
           <div
-            className="relative bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 text-center"
+            className="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden"
             onClick={e => e.stopPropagation()}
           >
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
-              aria-label="Close"
-            >
-              <X size={18} />
-            </button>
+            {/* Indigo header */}
+            <div className="bg-indigo-600 px-8 pt-10 pb-8 flex flex-col items-center text-center">
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 p-1.5 rounded-full text-indigo-200 hover:text-white hover:bg-indigo-500 transition-colors"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
 
-            <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 mx-auto mb-5">
-              <Vault size={32} className="text-indigo-600" strokeWidth={1.8} />
+              <LogoIcon size={60} />
+
+              <h2 className="mt-5 text-2xl font-extrabold text-white tracking-tight">
+                MoVaultX
+              </h2>
+              <p className="mt-1 text-indigo-200 text-sm font-medium">
+                Your trusted savings vault
+              </p>
             </div>
 
-            <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-amber-100 text-amber-700">
-              Coming Soon
-            </span>
+            {/* Body */}
+            <div className="px-8 py-6 text-center">
+              <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">
+                Coming Soon
+              </span>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">
-              MoVaultX is on its way
-            </h2>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6">
-              We're putting the finishing touches on MoVaultX before submitting to
-              the Google Play Store and App Store. It will be available to download
-              very soon.
-            </p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-5">
+                We're putting the finishing touches on MoVaultX before submitting to
+                the Google Play Store and App Store. It will be available to download
+                very soon.
+              </p>
 
-            <div className="flex flex-col gap-3 mb-6">
-              <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 text-left">
-                <Smartphone size={18} className="text-indigo-500 shrink-0" />
-                <p className="text-sm text-gray-600">
-                  Available on <span className="font-semibold text-gray-800">Android & iOS</span>
-                </p>
+              <div className="flex flex-col gap-2.5 mb-6 text-left">
+                <div className="flex items-center gap-3 bg-indigo-50 rounded-xl px-4 py-3">
+                  <Smartphone size={17} className="text-indigo-500 shrink-0" />
+                  <p className="text-sm text-gray-700">
+                    Launching on <span className="font-semibold text-gray-900">Android & iOS</span>
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 bg-indigo-50 rounded-xl px-4 py-3">
+                  <Bell size={17} className="text-indigo-500 shrink-0" />
+                  <p className="text-sm text-gray-700">
+                    Check back here or follow us for the launch date.
+                  </p>
+                </div>
               </div>
-              <div className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3 text-left">
-                <Bell size={18} className="text-indigo-500 shrink-0" />
-                <p className="text-sm text-gray-600">
-                  Stay updated — follow us or check back here for the launch date.
-                </p>
-              </div>
+
+              <button
+                onClick={() => setOpen(false)}
+                className="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm hover:bg-indigo-700 active:bg-indigo-800 transition-colors"
+              >
+                Got it — I'll check back soon
+              </button>
             </div>
-
-            <button
-              onClick={() => setOpen(false)}
-              className="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm hover:bg-indigo-700 transition-colors"
-            >
-              Got it, I'll check back soon
-            </button>
           </div>
         </div>
       )}

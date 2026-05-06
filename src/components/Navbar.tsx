@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Vault } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useAppModal } from './ComingSoonModal'
+import LogoIcon from './LogoIcon'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -19,7 +20,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl text-indigo-700">
-          <Vault size={26} strokeWidth={1.8} />
+          <LogoIcon size={28} />
           MoVaultX
         </Link>
 

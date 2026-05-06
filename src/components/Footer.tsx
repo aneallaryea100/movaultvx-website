@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Vault, Mail, X } from 'lucide-react'
+import { Mail, X } from 'lucide-react'
+import LogoIcon from './LogoIcon'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -10,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pb-10 border-b border-gray-800">
           <div>
             <Link to="/" className="flex items-center gap-2 text-white font-bold text-lg mb-3">
-              <Vault size={22} strokeWidth={1.8} />
+              <LogoIcon size={24} />
               MoVaultX
             </Link>
             <p className="text-sm leading-relaxed">
